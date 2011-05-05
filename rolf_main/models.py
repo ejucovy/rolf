@@ -216,6 +216,10 @@ class Push(models.Model):
         d['PUSH_UNI'] = self.user.username
         d['ROLLBACK_URL'] = self.rollback_url
         d['ROLF_PUSH_ID'] = "%d" % self.id
+        d['DATESTAMP'] = self.start_time.isoformat()
+        d['TIMESTAMP'] = time.mktime(
+            self.start_time.timetuple()
+            ) + self.start_time.microsecond / 1000000.0
         return d
 
     def reverse_pushstages(self):
